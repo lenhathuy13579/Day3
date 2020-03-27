@@ -119,10 +119,10 @@ public class QLSV {
     public static void nhapGV()
     {
         Scanner input = new Scanner(System.in);
-        teacher gv = new teacher();
         System.out.print("Nhập số giáo viên cần thêm vào: ");
         int soGV = Integer.valueOf(input.nextLine());
         for (int j=0;j<soGV;j++) {
+            teacher gv = new teacher();
             System.out.println("Giáo viên thứ: "+(j+1));
             System.out.print("Nhập mã giáo viên: ");
             String id = input.nextLine();
