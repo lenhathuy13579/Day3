@@ -24,7 +24,7 @@ public class QLSV {
         System.out.println("0.Thoát.");
 
         do {
-            System.out.print("\n\nNhập lựa chọn:");
+            System.out.print("\n\nNhập lựa chọn: ");
             int choose;
             choose = Integer.valueOf(input.nextLine());
             switch (choose){
@@ -67,11 +67,11 @@ public class QLSV {
     public static void nhapSV()
     {
         Scanner input = new Scanner(System.in);
-        student sv = new student();
         System.out.print("Nhập số sinh viên cần thêm: ");
         int soSinhVien = Integer.valueOf(input.nextLine());
         for (int j=0;j<soSinhVien;j++)
         {
+            student sv = new student();
             System.out.println("Sinh viên thứ "+(j+1));
             System.out.print("Nhập mã sinh viên: ");
             String id= input.nextLine();
@@ -85,21 +85,13 @@ public class QLSV {
             int namsinh= Integer.valueOf(input.nextLine());;
             System.out.print("Nhập giới tính :");
             String gioitinh = input.nextLine();
-            sv.setMaSV(id);
-            sv.setMaLop(malop);
-            sv.setHoDem(hodem);
-            sv.setName(ten);
-            sv.setBirth(namsinh);
-            sv.setGioiTinh(gioitinh);
-
-            int n, soTinTong=0;
-            double diemTong=0, diemTB;
+            int n;
             System.out.print("Nhập số học phần sinh viên đã học: ");
             n = Integer.valueOf(input.nextLine());
             ArrayList<hocphan> listHP = new ArrayList<hocphan>();
             for (int i=0;i<n;i++)
             {
-                System.out.print("Nhập tên học phần: ");
+                System.out.print("Nhập tên học phần"+" "+ (i+1)+" : ");
                 String tenHP = input.nextLine();
                 System.out.print("Nhập mã học phần: ");
                 String maHP = input.nextLine();
@@ -112,6 +104,12 @@ public class QLSV {
             }
             DanhSachHocPhan danhSachHocPhan = new DanhSachHocPhan(id, n, listHP);
             dsHP.add(danhSachHocPhan);
+            sv.setMaSV(id);
+            sv.setMaLop(malop);
+            sv.setHoDem(hodem);
+            sv.setName(ten);
+            sv.setBirth(namsinh);
+            sv.setGioiTinh(gioitinh);
             sv.setSoHocPhan(dsHP);
             dsSV.add(sv);
             System.out.println();
@@ -339,18 +337,14 @@ public class QLSV {
     public static void  xuatLop()
     {
         Scanner input = new Scanner(System.in);
+        System.out.print("Nhập mã lớp học: ");
+        String codeClass = input.nextLine();
+        System.out.println("Danh sách của lớp: "+ codeClass);
         if (dsGV.size() ==0 )
         {
             System.out.println("Chưa có giáo viên trong lớp.");
         }
-        if (dsSV.size()==0)
-        {
-            System.out.println("Chưa có sinh viên trong lớp.");
-        }
         else {
-            System.out.print("Nhập mã lớp học: ");
-            String codeClass = input.nextLine();
-            System.out.println("Danh sách của lớp: "+ codeClass);
             System.out.println("Giáo viên: ");
             for (int i=0;i< dsGV.size();i++) {
                 if (codeClass.equals(dsGV.get(i).getMaLop()))
@@ -358,6 +352,12 @@ public class QLSV {
                     System.out.println(dsGV.get(i).getName());
                 }
             }
+        }
+        if (dsSV.size()==0)
+        {
+            System.out.println("Chưa có sinh viên trong lớp.");
+        }
+        else {
             System.out.println("Sinh viên:");
             for (int i=0;i< dsSV.size();i++) {
                 if (codeClass.equals(dsSV.get(i).getMaLop()))
@@ -366,6 +366,5 @@ public class QLSV {
                 }
             }
         }
-
     }
 }
